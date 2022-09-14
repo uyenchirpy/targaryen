@@ -1,4 +1,5 @@
 import { DragonService } from './../dragon.service';
+import { MessageService } from '../message.service';
 import { Member } from './../member';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,10 +11,10 @@ import { Component, OnInit } from '@angular/core';
 export class MemberComponent implements OnInit {
 
   members: Member[] = [];
-  selectedMember?: Member;
 
   constructor(
-    private dragonService: DragonService
+    private dragonService: DragonService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -21,11 +22,7 @@ export class MemberComponent implements OnInit {
   }
 
   getMembers(): void {
-    this.members = this.dragonService.getMembers();
-  }
-
-  onSelect(member: Member): void {
-    this.selectedMember = member;
+    this.dragonService.getAllDragons().subscribe( members => this.members = members)
   }
 
 }

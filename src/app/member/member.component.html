@@ -1,11 +1,9 @@
 <h2>Member of House Targaryen</h2>
 <ul class="heroes">
   <li *ngFor="let member of members">
-    <button type="button" [class.chosen]="member === selectedMember" (click)="onSelect(member)">
-      <span class="badge">{{member.id}}</span>
-      <span class="name">{{member.name}}</span>
-    </button>
+    <a routerLink="/detail/{{member.id}}">
+      <span class="badge">{{member.id}}</span> {{member.name}}
+    </a>
   </li>
 </ul>
 
-<app-member-details [member]="selectedMember"></app-member-details>
