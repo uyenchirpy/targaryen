@@ -1,0 +1,18 @@
+<h2>Member of House Targaryen</h2>
+<ul class="heroes">
+  <li *ngFor="let member of members">
+    <button type="button" [class.chosen]="member === selectedMember" (click)="onSelect(member)">
+      <span class="badge">{{member.id}}</span>
+      <span class="name">{{member.name}}</span>
+    </button>
+  </li>
+</ul>
+
+<div *ngIf="selectedMember">
+  <h2>{{selectedMember.name | uppercase}} Details</h2>
+  <div>id: {{selectedMember.id}}</div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="selectedMember.name" placeholder="name">
+  </div>
+</div>
