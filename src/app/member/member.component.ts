@@ -1,6 +1,6 @@
+import { DragonService } from './../dragon.service';
 import { Member } from './../member';
 import { Component, OnInit } from '@angular/core';
-import { MEMBERS } from "../mock-member";
 
 @Component({
   selector: 'app-member',
@@ -9,14 +9,20 @@ import { MEMBERS } from "../mock-member";
 })
 export class MemberComponent implements OnInit {
 
-  members = MEMBERS;
+  members: Member[] = [];
   selectedMember?: Member;
 
-  constructor() { }
+  constructor(
+    private dragonService: DragonService
+  ) { }
 
   ngOnInit(): void {
+    this.getMembers();
   }
 
+  getMembers(): void {
+    this.members = this.dragonService.getMembers();
+  }
 
   onSelect(member: Member): void {
     this.selectedMember = member;
